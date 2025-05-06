@@ -1,0 +1,29 @@
+---
+description:
+globs:
+  - "pkg/**/*"
+alwaysApply: true
+---
+# 工具包使用指南
+
+项目包含多个实用工具包，位于 `pkg/` 目录下。
+
+## 文件处理工具
+
+### 文件监控
+- `pkg/filemonitor/` - 提供文件系统监控功能
+
+### 文件复制
+- `pkg/filecopy/` - 提供高效的文件复制功能
+
+### 数据压缩与转换
+位于 `pkg/util/` 目录：
+- `dat2img/` - DAT 文件转图片工具
+- `lz4/` - LZ4 压缩算法实现
+- `zstd/` - Zstandard 压缩算法实现
+- `silk/` - SILK 音频编解码工具
+
+## 配置管理
+- `pkg/config/` - 应用配置管理
+- `pkg/appver/` - 应用版本控制
+- `pkg/version/` - 版本信息管理

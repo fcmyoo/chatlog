@@ -1,0 +1,42 @@
+---
+description:
+globs:
+  - "main.go"
+  - "go.mod"
+  - "go.sum"
+  - "README.md"
+  - "Makefile"
+  - "cmd/*"
+  - "internal/"
+  - "pkg/"
+  - "docs/"
+  - "script/"
+alwaysApply: true
+---
+# 项目结构指南
+
+这是一个用 Go 语言开发的聊天日志工具项目，主要用于处理和分析微信聊天记录。
+
+## 核心目录结构
+
+- [main.go](mdc:main.go) - 项目的主入口文件
+- [go.mod](mdc:go.mod) - Go 模块依赖管理文件
+
+### 主要目录：
+
+1. `cmd/` - 包含可执行程序的入口点
+   - `chatlog/` - 主程序命令行工具
+
+2. `internal/` - 内部包实现
+   - `chatlog/` - 核心业务逻辑
+   - `wechat/` - 微信相关功能实现
+   - `wechatdb/` - 微信数据库处理
+   - `ui/` - 用户界面组件
+
+3. `pkg/` - 可重用的公共包
+   - `appver/` - 应用版本管理
+   - `config/` - 配置管理
+   - `util/` - 通用工具函数
+
+4. `docs/` - 项目文档
+5. `script/` - 构建和维护脚本

@@ -1,0 +1,38 @@
+---
+description:
+globs:
+  - "internal/wechat/**/*"
+  - "internal/wechatdb/**/*"
+  - "internal/model/wxproto/**/*"
+alwaysApply: true
+---
+# 微信功能实现指南
+
+本项目包含完整的微信聊天记录处理功能，支持多个平台。
+
+## 核心模块
+
+### 解密模块
+位于 `internal/wechat/decrypt/` 目录：
+- `windows/` - Windows 平台解密实现
+- `darwin/` - macOS 平台解密实现
+- `common/` - 跨平台共享代码
+
+### 数据库处理
+位于 `internal/wechatdb/` 目录：
+- `datasource/` - 数据源实现
+  - `windowsv3/` - Windows 微信数据库适配器
+  - `darwinv3/` - macOS 微信数据库适配器
+  - `v4/` - 微信 4.0 版本数据库支持
+  - `dbm/` - 数据库管理工具
+
+### 进程处理
+位于 `internal/wechat/process/` 目录：
+- `windows/` - Windows 平台进程处理
+- `darwin/` - macOS 平台进程处理
+
+### 密钥管理
+位于 `internal/wechat/key/` 目录：
+- `windows/` - Windows 平台密钥获取
+- `darwin/` - macOS 平台密钥获取
+  - `glance/` - 快速密钥扫描工具

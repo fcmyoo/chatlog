@@ -1,0 +1,29 @@
+---
+description:
+globs:
+  - "internal/ui/**/*"
+  - "internal/chatlog/http/static/**/*"
+alwaysApply: true
+---
+# UI 组件指南
+
+项目的用户界面组件主要位于 `internal/ui/` 目录下。
+
+## 主要组件
+
+### 基础组件
+- `form/` - 表单相关组件
+- `menu/` - 菜单组件
+- `style/` - 样式定义
+
+### 功能组件
+- `footer/` - 页面底部组件
+- `infobar/` - 信息栏组件
+- `help/` - 帮助和说明组件
+
+### 静态资源
+位于 `internal/chatlog/http/static/` 目录：
+- 包含网页界面所需的静态资源
+- CSS 样式表
+- JavaScript 文件
+- 图片等媒体资源
