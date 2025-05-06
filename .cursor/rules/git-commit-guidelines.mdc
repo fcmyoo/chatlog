@@ -1,0 +1,94 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Git 提交规范指南
+
+本项目遵循标准的 Git 提交信息规范，以保持提交历史的清晰和可读性。
+
+## 格式
+
+每个提交信息都包含一个 **header**, 一个 **body** 和一个 **footer**。
+
+```
+<type>(<scope>): <subject>
+<BLANK LINE>
+<body>
+<BLANK LINE>
+<footer>
+```
+
+- **Header**: 包含类型（type）、可选的作用域（scope）和主题（subject）。
+  - `type`: 必须是以下之一：
+    - ✨ `feat`: 新功能 (feature)
+    - 🐛 `fix`: 修补 bug
+    - 📚 `docs`: 文档 (documentation)
+    - 💄 `style`: 格式 (不影响代码运行的变动)
+    - ♻️ `refactor`: 重构 (既不是新增功能，也不是修改 bug 的代码变动)
+    - ✅ `test`: 增加测试
+    - 🧹 `chore`: 构建过程或辅助工具的变动
+    - ↩️ `revert`: 撤销之前的提交
+  - `scope`: 可选，用于说明 commit 影响的范围，例如 `ui`, `wechat`, `config` 等。
+    - 常用范围: `ui`, `wechat`, `database`, `config`, `api`, `core`, `cli`, `docs`
+  - `subject`: 提交目的的简短描述，不超过 50 个字符。
+    - 使用祈使句，现在时态，例如 `Add` 而不是 `Added` 或 `Adds`。
+    - 第一个字母小写（除非是专有名词）。
+    - 结尾不加句号 (`.`)。
+  - **破坏性变更标记**: 如果提交包含破坏性变更，可以在 type 或 scope 后添加 `!` 符号，例如 `feat!:` 或 `feat(api)!:`。
+
+- **Body**: 可选，对本次 commit 的详细描述。
+  - 解释 **什么** 和 **为什么**，而不是 **如何**。
+  - 每行不超过 72 个字符。
+
+- **Footer**: 可选，用于放置不兼容变动（Breaking Changes）或关闭 Issue 的信息。
+  - **Breaking Changes**: 以 `BREAKING CHANGE:` 开头，后面是对变动的描述、理由和迁移方法。
+  - **关闭 Issue**: 使用 `Closes #issue_number` 或 `Fixes #issue_number`。
+  - **引用 Issue**: 引用但不关闭 Issue，使用 `Refs: #issue_number` 或 `Related to: #issue_number`。
+  - **共同作者**: 标记合作者信息，使用 `Co-authored-by: name <email>` 格式。
+
+## 示例
+
+```
+✨ feat(ui): add dark mode toggle button
+
+Implement a new button in the settings menu to allow users to switch between light and dark themes.
+
+Closes #42
+```
+
+```
+🐛 fix(wechat): correct message decryption for newer versions
+
+The previous decryption logic failed for WeChat versions above 3.9. Update the algorithm based on recent findings.
+
+BREAKING CHANGE: The `decryptMessage` function signature has changed. Refer to the updated documentation for details.
+```
+
+```
+📚 docs(readme): update setup instructions
+
+Add instructions for Windows users and clarify dependency requirements.
+```
+
+```
+🧹 chore: update dependencies
+
+Update Go version and project dependencies to the latest stable releases.
+```
+
+```
+✨ feat(api)!: remove deprecated endpoints
+
+All deprecated v1 API endpoints have been removed. Use v2 endpoints instead.
+
+BREAKING CHANGE: v1 API is no longer available. Migrate all clients to v2 API.
+Refs: #123, #124
+```
+
+```
+↩️ revert: feat(ui): add dark mode toggle button
+
+This reverts commit abc1234 due to performance issues on mobile devices.
+
+```
