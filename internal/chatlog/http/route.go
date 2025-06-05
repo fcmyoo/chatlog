@@ -11,6 +11,7 @@ import (
 
 	"github.com/sjzar/chatlog/internal/errors"
 	"github.com/sjzar/chatlog/pkg/util"
+	"github.com/sjzar/chatlog/pkg/asr"
 	"github.com/sjzar/chatlog/pkg/util/dat2img"
 	"github.com/sjzar/chatlog/pkg/util/silk"
 
@@ -107,6 +108,36 @@ func (s *Service) GetChatlog(c *gin.Context) {
 		errors.Err(c, err)
 		return
 	}
+
+	// === 新增：语音转文本处理 ===
+	for _, msg := range messages {
+		if msg.Type == 34 { // 语音消息
+			key, ok := msg.Contents["voice"].(string)
+			if !ok || key == "" {
+				continue
+			}
+			media, err := s.db.GetMedia("voice", key)
+			if err != nil || media == nil || len(media.Data) == 0 {
+				continue
+			}
+			wavData, err := silk.Silk2Wav(media.Data)
+			if err != nil {
+				continue
+			}
+			tmpFile := filepath.Join(os.TempDir(), key+".wav")
+			if err := os.WriteFile(tmpFile, wavData, 0644); err != nil {
+				continue
+			}
+			text, err := asr.AliyunASR(tmpFile)
+			os.Remove(tmpFile)
+			if err != nil {
+				continue
+			}
+			msg.Content = text
+			msg.Contents["voice"] = text
+		}
+	}
+	// === 语音转文本处理结束 ===
 
 	switch strings.ToLower(q.Format) {
 	case "csv":
