@@ -15,7 +15,7 @@ import (
 // 配置参数
 const (
 	AliyunASRWebSocketURL = "wss://dashscope.aliyuncs.com/api-ws/v1/inference" // 替换为实际的阿里云 WebSocket 地址
-	APIKey                = "sk-b3966ff131db4b959d6d1905eef888d6"              // 推荐用临时Token，安全性更高
+	APIKey                = ""              // 推荐用临时Token，安全性更高
 	SampleRate            = 16000                                              // 采样率
 	ChunkSize             = 1024                                               // 每次发送的音频字节数
 )
